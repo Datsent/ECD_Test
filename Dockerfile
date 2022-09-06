@@ -1,14 +1,15 @@
-FROM python:3.7-slim AS compile-image
-RUN apt-get update
+FROM python:3
 
-COPY requirements.txt .
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+COPY requirements.txt /requirements.txt
 RUN pip install -r requirements.txt
 
-COPY main.py .
 
+FROM python:3-alpine
 
-FROM python:3.7-slim AS build-image
-COPY --from=compile-image /root/.local /root/.local
-
-
-CMD ["python3", "main.py"]
+COPY --from=0 /opt/venv /opt/venv
+COPY . /app
+WORKDIR /app
+ENV PATH="/opt/venv/bin:$PATH"
+ENTRYPOINT python3 main.py
