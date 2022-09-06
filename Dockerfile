@@ -1,10 +1,14 @@
-FROM python:3.8-slim-buster
+FROM python:3.7-slim AS compile-image
+RUN apt-get update
 
-WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+COPY main.py .
 
-COPY . .
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+FROM python:3.7-slim AS build-image
+COPY --from=compile-image /root/.local /root/.local
+
+
+CMD ["python3", "main.py"]
