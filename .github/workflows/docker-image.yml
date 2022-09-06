@@ -17,6 +17,8 @@ jobs:
       uses: remorses/bump-version@js
       with:
         version_file: ./VERSION
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
     - uses: actions/checkout@v3
