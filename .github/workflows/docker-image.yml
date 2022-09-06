@@ -18,7 +18,7 @@ jobs:
       with:
         version_file: ./VERSION
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
 
     - uses: actions/checkout@v3
