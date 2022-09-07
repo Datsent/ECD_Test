@@ -38,4 +38,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: datsent/test_app:${{ steps.octokit.outputs.tag }}
+          tags: datsent/test_app:$GIT_TAG_NAME # ${{ steps.octokit.outputs.tag }}
