@@ -22,13 +22,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
-    - uses: technote-space/release-github-actions@v6
-    - uses: oprypin/find-latest-tag@v1
-      with:
-        repository: Datsent/MSD_Test  # The repository to scan.
-        releases-only: true  # We know that all relevant tags have a GitHub release for them.
-      id: octokit
-    - run: echo "dATSENT is at version ${{ steps.octokit.outputs.tag }}"
+
+    - run: echo "The last tag is:${{ steps.tag_last.outputs.tag }}"
 
     -
       name: Login to DockerHub
