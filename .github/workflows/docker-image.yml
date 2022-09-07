@@ -21,6 +21,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
+    - uses: oprypin/find-latest-tag@v1
+      with:
+        repository: octokit/rest.js  # The repository to scan.
+        releases-only: true  # We know that all relevant tags have a GitHub release for them.
+      id: octokit
     - run: echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
     -
       name: Login to DockerHub
