@@ -18,6 +18,7 @@ jobs:
         fetch-depth: '0'
     - name: Bump version
       uses: anothrNick/github-tag-action@1.36.0
+      id: tag_last
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
@@ -40,4 +41,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: datsent/test_app:${{ steps.octokit.outputs.tag }}
+          tags: datsent/test_app:${{ steps.tag_last.outputs.tag }}
