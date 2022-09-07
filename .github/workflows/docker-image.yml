@@ -27,6 +27,9 @@ jobs:
         releases-only: true  # We know that all relevant tags have a GitHub release for them.
       id: octokit
     - run: echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
+    - uses: little-core-labs/get-git-tag@v3.0.1
+      id: tagName
+    - run: echo " is at version $GIT_TAG_NAME"
     -
       name: Login to DockerHub
       uses: docker/login-action@v2
