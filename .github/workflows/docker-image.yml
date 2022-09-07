@@ -24,6 +24,14 @@ jobs:
         WITH_V: true
 
     - run: echo "The last tag is:${{ steps.tag_last.outputs.tag }}"
+    - name: Run Trivy vulnerability scanner in repo mode
+      uses: aquasecurity/trivy-action@master
+      with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL'
 
     -
       name: Login to DockerHub
