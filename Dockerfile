@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3-alpine
 
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
