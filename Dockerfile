@@ -9,7 +9,7 @@ RUN pip install -r requirements.txt
 FROM python:3-alpine
 
 COPY --from=0 /opt/venv /opt/venv
-COPY . /app
+COPY main.py /app
 WORKDIR /app
 ENV PATH="/opt/venv/bin:$PATH"
 ENTRYPOINT python3 main.py

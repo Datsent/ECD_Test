@@ -1,0 +1,2 @@
+minikube start --no-vtx-check
+helm install dima msd-helm\ --values msd-helm\values.yaml
